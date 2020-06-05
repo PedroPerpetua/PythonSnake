@@ -2,7 +2,7 @@ import pygame as pg
 import src.constants as constants
 from assets.assets import Assets
 from src.snake import Snake
-from src.fruit import Fruit 
+from src.fruit import Fruit
 
 class Game:
     def __init__(self, x, y):
@@ -27,19 +27,27 @@ class Game:
             window.blit(Assets.BODY, (x, y))
         # Draw the fruit
         x, y = self.box.left + constants.PIXEL_SIZE * self.fruit.position[0], self.box.top + constants.PIXEL_SIZE * self.fruit.position[1]
-        window.blit(Assets.FRUIT, (x, y))
+        if self.fruit.golden:
+            window.blit(Assets.GOLDEN, (x, y))
+        else:
+            window.blit(Assets.FRUIT, (x, y))
     def update(self, events):
         self.clock.tick()
         self.count += self.clock.get_time()
         if self.count > constants.TICK:
             self.count %= constants.TICK
             self.snake.move()
+            if self.snake.lost():
+                print("LOST!")
             if self.snake.body[0] == self.fruit.position:
+                if self.fruit.golden:
+                    self.snake.grow += 3
+                    self.score += 3
+                else:
+                    self.snake.grow += 1
+                    self.score += 1
                 while self.fruit.position in self.snake.body:
                     self.fruit.reposition()
-                self.snake.grow()
-                self.score += 1
-
         for event in events:
             if event.type == pg.KEYDOWN:
                 if event.key in (pg.K_UP, pg.K_w):

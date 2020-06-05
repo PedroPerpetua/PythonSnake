@@ -7,6 +7,7 @@ class Assets:
 	HEAD = None
 	BODY = None
 	FRUIT = None
+	GOLDEN = None
 
 def import_assets():
 	def load_image(image_name, convert=True):
@@ -19,3 +20,4 @@ def import_assets():
 	Assets.HEAD = load_image("head")
 	Assets.BODY = load_image("body")
 	Assets.FRUIT = load_image("fruit")
+	Assets.GOLDEN = load_image("golden")

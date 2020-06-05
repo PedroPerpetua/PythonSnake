@@ -1,22 +1,83 @@
 import pygame as pg
 from src.game import Game
 
-class GameScreen:
+class StartScreen:
 	def __init__(self):
 		self.items = {}
-		self.items["game"] = {}
-		self.items["game"]["game"] = Game(10, 10)
-		self.game = None
+	def draw(self, window):
+		for item_type in self.items:
+			for item in self.items[item_type]:
+				item.draw(window)
+	def update(self, window):
+		for item_type in self.items:
+			for item in self.items[item_type]:
+				item.update(window)
+	@staticmethod
+	def screen_loop(window):
+		screen = StartScreen()
+		while True:
+			events = pg.event.get()
+			for event in events:
+				if event.type == pg.QUIT:
+					pass
+			screen.draw(window)
+			screen.update(window)
+			pg.display.update()
+
+class CreditsScreen:
+	def __init__(self):
+		self.items = {}
+	def draw(self, window):
+		for item_type in self.items:
+			for item in self.items[item_type]:
+				item.draw(window)
+	def update(self, window):
+		for item_type in self.items:
+			for item in self.items[item_type]:
+				item.update(window)
+	@staticmethod
+	def screen_loop(window):
+		screen = CreditsScreen()
+		while True:
+			events = pg.event.get()
+			for event in events:
+				if event.type == pg.QUIT:
+					pass
+			screen.draw(window)
+			screen.update(window)
+			pg.display.update()
+
+class HighscoreScreen:
+	def __init__(self):
+		self.items = {}
+	def draw(self, window):
+		for item_type in self.items:
+			for item in self.items[item_type]:
+				item.draw(window)
+	def update(self, window):
+		for item_type in self.items:
+			for item in self.items[item_type]:
+				item.update(window)
+	@staticmethod
+	def screen_loop(window):
+		screen = HighscoreScreen()
+		while True:
+			events = pg.event.get()
+			for event in events:
+				if event.type == pg.QUIT:
+					pass
+			screen.draw(window)
+			screen.update(window)
+			pg.display.update()
+
+class GameScreen:
+	def __init__(self):
+		self.game = Game(0, 0)
 	def draw(self, window):
 		window.fill((255, 255, 255))
-		for item_type in self.items:
-			for item in self.items[item_type]:
-				self.items[item_type][item].draw(window)
+		self.game.draw(window)
 	def update(self, events):
-		for item_type in self.items:
-			for item in self.items[item_type]:
-				self.items[item_type][item].update(events)
-
+		self.game.update(events)
 	@staticmethod
 	def screen_loop(window):
 		screen = GameScreen()
@@ -25,8 +86,7 @@ class GameScreen:
 			for event in events:
 				if event.type == pg.QUIT:
 					#EXIT PROMPT
-					pass
-			
+					pass 
 			screen.draw(window)
 			screen.update(events)
 			pg.display.update()

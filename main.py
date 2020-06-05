@@ -1,10 +1,9 @@
 import pygame as pg
 from assets.assets import import_assets
-from src.snake import Snake
 from src.screens import GameScreen
 
-WIN_W = 700
-WIN_H = 500
+WIN_W = 704
+WIN_H = 704
 
 def main():
 	pg.init()
