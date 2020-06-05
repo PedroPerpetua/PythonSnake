@@ -1,6 +1,6 @@
 import pygame as pg
 import src.constants as constants
-from assets.assets import Assets
+from assets.assets import Assets, Colors
 from src.snake import Snake
 from src.fruit import Fruit
 
@@ -10,13 +10,19 @@ class Game:
         border_size = constants.BORDER_SIZE * 2 + size
         self.border_box = pg.rect.Rect((x, y), (border_size, border_size))
         self.box = pg.rect.Rect((x + constants.BORDER_SIZE, y + constants.BORDER_SIZE), (size, size))
-        self.score = 0
+        self.score = 3
+        self.score_font = pg.font.Font(Assets.BOXY_FONT, 24)
         self.snake = Snake(int(constants.BOARD_SIZE / 2), constants.BOARD_SIZE / 2)
         self.fruit = Fruit()
         self.clock = pg.time.Clock()
         self.count = 0
+    def lost(self):
+        return self.snake.lost()
     def draw(self, window):
-        pg.draw.rect(window, (0, 0, 0), self.box)
+        window.blit(Assets.BACKGROUND, self.border_box)
+        # Draw the score
+        text = self.score_font.render("Score: " + str(self.score), True, Colors.BLACK)
+        window.blit(text, (self.border_box.left + 3, self.border_box.top + 3))
         # Draw the snake
         head = self.snake.body[0]
         head_x, head_y = self.box.left + constants.PIXEL_SIZE * head[0], self.box.top + constants.PIXEL_SIZE * head[1]
@@ -37,8 +43,6 @@ class Game:
         if self.count > constants.TICK:
             self.count %= constants.TICK
             self.snake.move()
-            if self.snake.lost():
-                print("LOST!")
             if self.snake.body[0] == self.fruit.position:
                 if self.fruit.golden:
                     self.snake.grow += 3
