@@ -6,10 +6,10 @@ class Colors:
 	BLACK = (0, 0, 0)
 
 class Assets:
-	HEAD = None
-	BODY = None
-	FRUIT = None
-	GOLDEN = None
+	SNAKE_HEAD = None
+	SNAKE_BODY = None
+	FRUIT_NORMAL = None
+	FRUIT_GOLDEN = None
 	BACKGROUND = None
 	BOXY_FONT = None
 	BUTTON_DEFAULT = None
@@ -29,10 +29,10 @@ def import_assets():
 		else:
 			font = "assets/" + font_name + ".ttf"
 		return font
-	Assets.HEAD = load_image("head")
-	Assets.BODY = load_image("body")
-	Assets.FRUIT = load_image("fruit")
-	Assets.GOLDEN = load_image("golden")
+	Assets.SNAKE_HEAD = load_image("snake_head")
+	Assets.SNAKE_BODY = load_image("snake_body")
+	Assets.FRUIT_NORMAL = load_image("fruit_normal")
+	Assets.FRUIT_GOLDEN = load_image("fruit_golden")
 	Assets.BACKGROUND = load_image("background")
 	Assets.BOXY_FONT = load_font("boxy_bold")
 	Assets.BUTTON_DEFAULT = load_image("button_default")

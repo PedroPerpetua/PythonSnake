@@ -26,17 +26,17 @@ class Game:
         # Draw the snake
         for part in self.snake.body[1:]:
             x, y = self.box.left + constants.PIXEL_SIZE * part[0], self.box.top + constants.PIXEL_SIZE * part[1]
-            window.blit(Assets.BODY, (x, y))
+            window.blit(Assets.SNAKE_BODY, (x, y))
         # Draw the fruit
         x, y = self.box.left + constants.PIXEL_SIZE * self.fruit.position[0], self.box.top + constants.PIXEL_SIZE * self.fruit.position[1]
         head = self.snake.body[0]
         head_x, head_y = self.box.left + constants.PIXEL_SIZE * head[0], self.box.top + constants.PIXEL_SIZE * head[1]
-        rotated_head = pg.transform.rotate(Assets.HEAD, self.snake.direction)
+        rotated_head = pg.transform.rotate(Assets.SNAKE_HEAD, self.snake.direction)
         window.blit(rotated_head, (head_x, head_y))
         if self.fruit.golden:
-            window.blit(Assets.GOLDEN, (x, y))
+            window.blit(Assets.FRUIT_GOLDEN, (x, y))
         else:
-            window.blit(Assets.FRUIT, (x, y))
+            window.blit(Assets.FRUIT_NORMAL, (x, y))
     def update(self, events):
         self.clock.tick()
         self.count += self.clock.get_time()
