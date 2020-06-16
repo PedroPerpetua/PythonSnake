@@ -1,6 +1,6 @@
 from datetime import datetime
 
-FILE = "src/highscores.dat" 
+FILE = "highscores.dat" 
 
 def compare_points(pair):
     return pair[0]
