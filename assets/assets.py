@@ -6,6 +6,7 @@ class Colors:
 	BLACK = (0, 0, 0)
 
 class Assets:
+	TITLE = None
 	SNAKE_HEAD = None
 	SNAKE_BODY = None
 	FRUIT_NORMAL = None
@@ -15,6 +16,7 @@ class Assets:
 	BUTTON_DEFAULT = None
 	BUTTON_HOVERED = None
 	POPUP = None
+	SCOREBOARD = None
 def import_assets():
 	def load_image(image_name, convert=True):
 		if convert:
@@ -29,6 +31,7 @@ def import_assets():
 		else:
 			font = "assets/" + font_name + ".ttf"
 		return font
+	Assets.TITLE = load_image("title")
 	Assets.SNAKE_HEAD = load_image("snake_head")
 	Assets.SNAKE_BODY = load_image("snake_body")
 	Assets.FRUIT_NORMAL = load_image("fruit_normal")
@@ -38,3 +41,4 @@ def import_assets():
 	Assets.BUTTON_DEFAULT = load_image("button_default")
 	Assets.BUTTON_HOVERED = load_image("button_hovered")
 	Assets.POPUP = load_image("popup")
+	Assets.SCOREBOARD = load_image("scoreboard")
