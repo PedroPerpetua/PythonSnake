@@ -20,7 +20,7 @@ class HighscoreHandler:
     def add_highscore(self, points):
         time = datetime.now().strftime("%d-%m-%Y %Hh%Mm%Ss")
         self.scores.append((points, time))
-        self.scores.sort(key=compare_points)
+        self.scores.sort(reverse=True, key=compare_points)
     def get_top_scores(self):
         empty = {"points": "N/A", "day": "  No score", "time": "  No score"}
         if len(self.scores) > 0:
